@@ -25,8 +25,8 @@ greyColorDark = "#A0A0A0"
   priority = 0.5
 
 
-[markup]
-  defaultMarkdownHandler = "blackfriday"
+# [markup]
+#   defaultMarkdownHandler = "blackfriday"
 
 
 
