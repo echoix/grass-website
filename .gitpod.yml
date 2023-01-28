@@ -1,0 +1,46 @@
+# List the start up tasks. Learn more https://www.gitpod.io/docs/configure/workspaces/tasks
+tasks:
+  - name: Install Hugo dependencies
+    # #This should be used to download latest version
+    # before: |
+    #   pushd /tmp/
+    #   curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest \
+    #   | grep "browser_download_url.*hugo_[^extended].*_Linux-64bit\.tar\.gz" \
+    #   | cut -d ":" -f 2,3 \
+    #   | tr -d \" \
+    #   | wget -qi -
+    #   tarball="$(find . -name "*Linux-64bit.tar.gz")"
+    #   tar -xzf $tarball
+    #   chmod 755 hugo
+    #   sudo mv hugo /usr/local/bin/
+    #   popd
+    #   location="$(which hugo)"
+    #   echo "Hugo binary location: $location"
+    #   version="$(hugo version)"
+    #   echo "Hugo binary version: $version"
+
+    # Until the version on the server is updated, use this hard-coded version.
+    before: |
+      pushd /tmp/
+      curl -s https://api.github.com/repos/gohugoio/hugo/releases/tags/v0.69.0 \
+      | grep "browser_download_url.*hugo_[^extended].*_Linux-64bit\.tar\.gz" \
+      | cut -d ":" -f 2,3 \
+      | tr -d \" \
+      | wget -qi -
+      tarball="$(find . -name "*Linux-64bit.tar.gz")"
+      tar -xzf $tarball
+      chmod 755 hugo
+      sudo mv hugo /usr/local/bin/
+      popd
+      location="$(which hugo)"
+      echo "Hugo binary location: $location"
+      version="$(hugo version)"
+      echo "Hugo binary version: $version"
+    init: echo "Your version of Hugo is `hugo version`"
+    command: hugo server -D -F --baseUrl $(gp url 1313) --liveReloadPort=443 --appendPort=false --bind=0.0.0.0
+
+# List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
+ports:
+  - port: 1313
+    onOpen: open-preview
+# Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
