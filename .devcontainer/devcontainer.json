@@ -1,8 +1,21 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/devcontainers/features/hugo:1": {
-      "version": "0.69.0"
-    }
-  }
+	"image": "mcr.microsoft.com/devcontainers/base:buster",
+	"features": {
+		"ghcr.io/devcontainers/features/hugo:1": {
+			"version": "0.69.0"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bungcip.better-toml",
+				"streetsidesoftware.code-spell-checker"
+			]
+		}
+	},
+	"portsAttributes": {
+		"1313": {
+			"label": "hugo_server_port"
+		}
+	}
 }
