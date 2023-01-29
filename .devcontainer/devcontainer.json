@@ -18,4 +18,5 @@
 			"label": "hugo_server_port"
 		}
 	}
-}
+	//,"postStartCommand": "nohup bash -c 'hugo server -D -F --baseUrl https://${CODESPACE_NAME}-1313.${GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN} --liveReloadPort=443 --appendPort=false --bind=0.0.0.0 &'"
+} 
